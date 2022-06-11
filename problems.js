@@ -2,13 +2,17 @@
     Original:
     Write a function `plusFive` that takes in a number as an argument and
     returns the sum of that number and 5.
+    
+    function plusFive(num) {
+    return num + 5;
+    }
 
     New:
     Write a function `plusTen` that takes in a number as an argument and
     returns the sum of that number and 10.
 */
-function plusFive(num) {
-    return num + 5;
+function plusTen(num){
+    return num + 10;
 }
 
 
@@ -17,16 +21,27 @@ function plusFive(num) {
     Write a function `printFives(max)` that prints out the multiples of 5 that 
     are less than max.
 
-    New:
-    Write a function `returnSevens(max)` that returns an array that contains
-    multiples of 7 that are less than max.
-*/
-function printFives(max) {
+    function printFives(max) {
     for (let i = 0; i < max; i++) {
         if (i % 5 === 0) {
             console.log(i);
         }
     }
+    }
+
+    New:
+    Write a function `returnSevens(max)` that returns an array that contains
+    multiples of 7 that are less than max.
+*/
+
+function returnSevens(max){
+    let arr = [];
+    
+    for(let i = 0; i < max;i++){
+        if(i %7 == 0) arr.push(i);
+    }
+
+    return arr;
 }
 
 
@@ -37,14 +52,19 @@ function printFives(max) {
     function should return `true` if *either* `word1` or `word2` is found in
     the sentence, and `false` if neither is found. 
 
+    function eitherStringIncluded(sentence, word1, word2) {
+    return sentence.includes(word1) || sentence.includes(word2);
+    }
+
     New:
     Write a function named `bothStringsIncluded(sentence, word1, word2)` that
     accepts a sentence and two words as arguments. The `bothStringsIncluded`
     function should return `true` if *both* `word1` and `word2` are found in
     the sentence, and `false` if neither or only 1 is found.
 */
-function eitherStringIncluded(sentence, word1, word2) {
-    return sentence.includes(word1) || sentence.includes(word2);
+
+function bothStringsIncluded(sentence, word1, word2){
+    return sentence.includes(word1) && sentence.includes(word2);
 }
 
 
@@ -53,12 +73,7 @@ function eitherStringIncluded(sentence, word1, word2) {
     Write a function `sumArray(arr)` that takes in an array of numbers and
     returns the total sum of all the numbers.
 
-    New:
-    Write a function `productArray(arr)` that takes in an array of numbers and
-    returns the product of all the numbers. The product of an array  is the number
-    you get when you multiply all the numbers together.
-*/
-function sumArray(arr) {
+    function sumArray(arr) {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
         sum += arr[i];
@@ -66,18 +81,38 @@ function sumArray(arr) {
     return sum;
 }
 
+    New:
+    Write a function `productArray(arr)` that takes in an array of numbers and
+    returns the product of all the numbers. The product of an array  is the number
+    you get when you multiply all the numbers together.
+*/
+
+function productArray(arr){
+    let product = 1;
+    for(let i = 0; i < arr.length; i++){
+        product *= arr[i];
+    }
+    return product;
+}
+
+
 
 /*
     Original:
     Write a function `threeOrSeven` that takes in a number and returns `true`
     if the number is divisible by either 3 or 7 and `false` otherwise.
 
+    function threeOrSeven(num) {
+    return num % 3 === 0 || num % 7 === 0;
+}
+
     New:
     Write a function `fiveAndEleven` that takes in a number and returns `true`
     if the number is divisible by BOTH 5 and 11 and `false` otherwise.
 */
-function threeOrSeven(num) {
-    return num % 3 === 0 || num % 7 === 0;
+
+function fiveAndEleven(num){
+    return num %5 == 0 && num%11 == 0;
 }
 
 
@@ -86,11 +121,7 @@ function threeOrSeven(num) {
     Write a function, `countVowels(word)`, that takes in a string word and
     returns the number of vowels in the word.
 
-    New:
-    Write a function, `countConsonants(word)`, that takes in a string word and
-    returns the number of consonants in the word.
-*/
-function countVowels(word) {
+    function countVowels(word) {
     const vowels = ["a", "e", "i", "o", "u"];
     let count = 0;
     for (let i = 0; i < word.length; i++) {
@@ -99,6 +130,18 @@ function countVowels(word) {
         }
     }
     return count;
+    }
+
+    Method 2: countVowels(word)
+    return word.match(new RegExp("[aeiou]", "gi")).length;
+
+    New:
+    Write a function, `countConsonants(word)`, that takes in a string word and
+    returns the number of consonants in the word.
+*/
+
+function countConsonants(word){
+    return word.match(new RegExp("(?![aeiou])[a-z]", "gi")).length;
 }
 
 
@@ -107,6 +150,10 @@ function countVowels(word) {
     Write a function `whisper` that takes in a string and returns a "whispered"
     version of that string. Use the `.toLowerCase()` function on a string to
     see what it does!
+
+    function whisper(str) {
+    return str.toLowerCase();
+    }
 
     New:
     Write a function `alternatingLetters` that takes in a string and returns a
@@ -118,10 +165,16 @@ function countVowels(word) {
     `.split('')` function on strings to make a copy of the string as an array. 
     The `.join('')` function joins the elements in an array into a string.
 */
-function whisper(str) {
-    return str.toLowerCase();
-}
 
+function alternatingLetters(str){
+    let chars = str.toUpperCase().split("");
+    
+    for(let i = 0; i < chars.length; i += 2){
+        chars[i] = chars[i].toLowerCase();
+    }
+    
+    return chars.join("");
+}
 
 module.exports = {
     plusTen,
